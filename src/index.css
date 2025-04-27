@@ -1,0 +1,17 @@
+/* src/index.css */
+
+/* Make sure Tailwind directives are at the top */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add custom class for footer background */
+.footer-background-texture {
+  background-image: url("/src/assets/footer-bg.png"); /* Adjust path if needed */
+  background-repeat: repeat;
+  /* Optional: You can add background-size, position etc. if needed */
+  /* background-size: auto; */
+  /* background-position: center center; */
+}
+
+/* Add other global styles below if needed */
