@@ -1,12 +1,12 @@
 // src/pages/ContactUs.tsx
-import React, { useState } from "react"; // Import useState
+import React, { useState } from "react";
 
 // Layout Components
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
-// --- Make sure this import points to your actual contact page image ---
-import contactImage from "../assets/contact-image.png"; // Assuming .jpg from earlier prompt
+// --- Ensure this import points to your actual contact page image ---
+import contactImage from "../assets/contact-image.jpg"; // Using .jpg based on earlier prompt
 
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 
@@ -51,20 +51,46 @@ const ContactUs: React.FC = () => {
     setStatus("sending");
     setStatusMessage("");
 
-    // === CORRECTED Django API Endpoint ===
-    const apiUrl = "http://127.0.0.1:8000/api/contact/"; // Use the correct path!
+    // === Use Environment Variable for API URL ===
+    const baseApiUrl = import.meta.env.VITE_API_BASE_URL; // Reads from .env locally or Vercel env vars
+
+    // Check if the base URL is defined (important!)
+    if (!baseApiUrl) {
+      console.error(
+        "API Base URL is not defined. Set VITE_API_BASE_URL environment variable."
+      );
+      setStatus("error");
+      setStatusMessage(
+        "Configuration error. Cannot send message. Please contact support directly."
+      );
+      // Optionally hide status after delay even for config error
+      setTimeout(() => {
+        setStatus("idle");
+        setStatusMessage("");
+      }, 6000);
+      return; // Stop the submission
+    }
+
+    // Construct the full endpoint URL
+    const apiUrl = `${baseApiUrl}/api/contact/`;
+    // =========================================
 
     console.log("Form Data to Send:", formData);
-    console.log("Attempting to POST to:", apiUrl);
+    console.log("Attempting to POST to:", apiUrl); // Will show correct production or local URL
 
     try {
+      // --- TODO: Implement CSRF Token Fetching if needed for Django ---
+      // Example: const csrfToken = getCookie('csrftoken');
+      // You'd need a getCookie utility function
+      // ---
+
       const response = await fetch(apiUrl, {
-        // Use the apiUrl variable
+        // Use the constructed apiUrl
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Note: Add CSRF token header here if needed later
-          // Example: 'X-CSRFToken': getCookie('csrftoken'),
+          // Include CSRF token header if obtained:
+          // 'X-CSRFToken': csrfToken || '',
         },
         body: JSON.stringify(formData),
       });
@@ -75,7 +101,7 @@ const ContactUs: React.FC = () => {
         try {
           const errorData = await response.json();
           errorDetails += ` - ${
-            errorData.message || "No error details provided."
+            errorData.message || "No error details provided." // Check if Django sends a 'message' field on error
           }`;
         } catch (jsonError) {
           // Ignore if response body is not valid JSON
@@ -104,12 +130,12 @@ const ContactUs: React.FC = () => {
           "An unexpected error occurred. Please try again later or contact us directly."
         );
       }
-      // Optional: Automatically hide the status message after some time
-      setTimeout(() => {
-        setStatus("idle");
-        setStatusMessage("");
-      }, 6000); // Reset after 6 seconds
     }
+    // Reset status message after a delay for both success and error
+    setTimeout(() => {
+      setStatus("idle");
+      setStatusMessage("");
+    }, 6000); // Reset after 6 seconds
   };
 
   return (
@@ -139,10 +165,10 @@ const ContactUs: React.FC = () => {
                   <h2 className="text-3xl font-bold font-serif text-brand-dark-green mb-6">
                     Contact Information
                   </h2>
+                  {/* ... Contact Details (Address, Email, Phone blocks) ... */}
                   <div className="space-y-4 text-stone-700">
                     <div className="flex items-start space-x-3">
                       {" "}
-                      {/* Address */}
                       <FaMapMarkerAlt
                         className="text-xl text-brand-gold mt-1 flex-shrink-0"
                         aria-hidden="true"
@@ -156,7 +182,6 @@ const ContactUs: React.FC = () => {
                     </div>
                     <div className="flex items-start space-x-3">
                       {" "}
-                      {/* Email */}
                       <FaEnvelope
                         className="text-xl text-brand-gold mt-1 flex-shrink-0"
                         aria-hidden="true"
@@ -173,7 +198,6 @@ const ContactUs: React.FC = () => {
                     </div>
                     <div className="flex items-start space-x-3">
                       {" "}
-                      {/* Phone */}
                       <FaPhoneAlt
                         className="text-xl text-brand-gold mt-1 flex-shrink-0"
                         aria-hidden="true"
@@ -190,7 +214,6 @@ const ContactUs: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
                 {/* Image */}
                 <div>
                   <img
@@ -200,13 +223,12 @@ const ContactUs: React.FC = () => {
                   />
                 </div>
               </div>
-
               {/* Column 2: Contact Form */}
               <div>
                 <h2 className="text-3xl font-bold font-serif text-brand-dark-green mb-6">
                   Send Us a Message
                 </h2>
-                {/* Updated form */}
+                {/* Form */}
                 <form
                   onSubmit={handleSubmit}
                   method="POST"
@@ -320,7 +342,8 @@ const ContactUs: React.FC = () => {
                     )}
                   </div>
                 </form>
-              </div>
+              </div>{" "}
+              {/* End Form Column */}
             </div>
           </div>
         </section>
