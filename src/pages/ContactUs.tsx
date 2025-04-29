@@ -6,7 +6,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
 // --- Ensure this import points to your actual contact page image ---
-import contactImage from "../assets/contact-image.jpg"; // Using .jpg based on earlier prompt
+import contactImage from "../assets/contact-image.png"; // Using .jpg based on earlier prompt
 
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 
