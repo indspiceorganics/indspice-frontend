@@ -1,6 +1,6 @@
 // src/pages/Home.tsx
 import React from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 // Import Layout Components
 import Navbar from "../components/layout/Navbar";
