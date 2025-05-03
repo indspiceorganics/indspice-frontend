@@ -1,6 +1,6 @@
 // src/pages/PrivacyPolicy.tsx
 import React from "react";
-
+import { Helmet } from "react-helmet-async";
 // Layout Components
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -17,6 +17,14 @@ const PrivacyPolicy: React.FC = () => {
       <Navbar />
 
       <main>
+        {/* SEO Integration */}
+        <Helmet>
+          <title>Privacy Policy | IndSpice Organics</title>
+          <meta
+            name="description"
+            content="Review the Privacy Policy of IndSpice Organics to understand how we collect, use, and protect your data."
+          />
+        </Helmet>
         {/* Page Header */}
         <header className="bg-stone-100 py-16 md:py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

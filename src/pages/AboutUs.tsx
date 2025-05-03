@@ -1,5 +1,6 @@
 // src/pages/AboutUs.tsx
 import React from "react";
+import { Helmet } from "react-helmet-async"; // Import Helmet
 
 // Import reusable layout components
 import Navbar from "../components/layout/Navbar";
@@ -16,6 +17,21 @@ import farmImage from "../assets/about-farm.png"; // e.g., Indian landscape, far
 const AboutUs: React.FC = () => {
   return (
     <div className="bg-stone-50 text-stone-800 font-sans antialiased">
+      {/* Helmet Component for Meta Tags and Title */}
+      <Helmet>
+        <title>About Us | IndSpice Organics</title>
+        <meta
+          name="description"
+          content="Learn more about IndSpice Organics and our commitment to providing pure, certified organic spices from India."
+        />
+        <meta
+          name="keywords"
+          content="IndSpice Organics, about us, organic spices, sustainable farming, Rajasthan spices, Indian spices"
+        />
+        <meta name="author" content="IndSpice Organics" />
+        <link rel="canonical" href="https://www.indspiceorganics.com/about" />
+      </Helmet>
+
       <Navbar />
 
       <main>

@@ -1,6 +1,7 @@
 // src/pages/SpiceDetailPage.tsx
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom"; // Added Link for error state
+import { Helmet } from "react-helmet-async";
 
 // Layout Components
 import Navbar from "../components/layout/Navbar";
@@ -60,6 +61,13 @@ const SpiceDetailPage: React.FC = () => {
     <div className="bg-white text-stone-800 font-sans antialiased">
       <Navbar />
       <main className="pt-12 pb-16 md:pt-16 md:pb-24">
+        <Helmet>
+          <title>{`${spiceData.name} | IndSpice Organics`}</title>
+          <meta
+            name="description"
+            content={`Explore the flavor, origin, and organic promise of our ${spiceData.name} spice at IndSpice Organics.`}
+          />
+        </Helmet>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
             {/* Column 1: Spice Image */}

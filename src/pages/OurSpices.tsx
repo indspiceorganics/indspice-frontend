@@ -1,5 +1,6 @@
 // src/pages/OurSpices.tsx
 import React from "react";
+import { Helmet } from "react-helmet-async";
 
 // Layout Components
 import Navbar from "../components/layout/Navbar";
@@ -9,7 +10,6 @@ import Footer from "../components/layout/Footer";
 import SpiceCard from "../components/spices/SpiceCard"; // Adjust path if needed
 
 // --- Spice Images (Update filenames/paths to match your assets) ---
-// Note: You updated your existing names to spiceCard-* based on your provided code
 import spiceCuminImage from "../assets/spiceCard-cumin.png";
 import corianderImage from "../assets/spiceCard-coriander.png";
 import redChillyImage from "../assets/spiceCard-chilly.png";
@@ -106,6 +106,41 @@ const spicesList: SpiceInfo[] = [
 const OurSpices: React.FC = () => {
   return (
     <div className="bg-stone-50 text-stone-800 font-sans antialiased">
+      {/* SEO optimization using Helmet */}
+      <Helmet>
+        <title>IndSpice Organics | Explore Our Organic Spices</title>
+        <meta
+          name="description"
+          content="Discover a variety of organic spices at IndSpice Organics. From cumin to black pepper, find premium, pesticide-free spices sourced sustainably."
+        />
+        <meta
+          name="keywords"
+          content="organic spices, cumin, coriander, turmeric, black pepper, fennel, Indian spices, pesticide-free spices"
+        />
+        <meta name="author" content="IndSpice Organics" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="IndSpice Organics | Explore Our Organic Spices"
+        />
+        <meta
+          property="og:description"
+          content="Explore our wide range of premium organic spices, including cumin, turmeric, coriander, and more, grown sustainably for your kitchen."
+        />
+        <meta
+          property="og:url"
+          content="https://www.indspiceorganics.com/our-spices"
+        />
+        <meta
+          property="og:image"
+          content="URL-to-your-image" // Add image URL for social sharing
+        />
+        <link
+          rel="canonical"
+          href="https://www.indspiceorganics.com/our-spices"
+        />
+      </Helmet>
+
       <Navbar />
 
       <main>
