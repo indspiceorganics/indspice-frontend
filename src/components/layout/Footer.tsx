@@ -28,7 +28,6 @@ const Footer: React.FC = () => {
             </h4>
             {/* --- Updated Contact Details --- */}
             <p className="text-sm">
-              Address:{" "}
               <a
                 href="https://www.google.com/maps/place/IndSpice+Organics/@26.3078368,73.0617906,17z/data=!3m1!4b1!4m6!3m5!1s0x39418d8b27e7c44f:0xbdf23309b1601b04!8m2!3d26.3078368!4d73.0617906!16s%2Fg%2F11xcf4nrrc?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D"
                 className="hover:text-brand-gold transition duration-150"
