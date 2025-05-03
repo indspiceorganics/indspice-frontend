@@ -174,10 +174,13 @@ const ContactUs: React.FC = () => {
                         aria-hidden="true"
                       />
                       <div>
-                        <h3 className="font-semibold">Our Address</h3>
-                        <p className="text-stone-600">
-                          Vidhya Nagar, Jodhpur, Rajasthan, India
-                        </p>
+                        <h3 className="font-semibold">Email Us</h3>
+                        <a
+                          href="https://www.google.com/maps/place/IndSpice+Organics/@26.3078368,73.0592157,17z/data=!3m1!4b1!4m6!3m5!1s0x39418d8b27e7c44f:0xbdf23309b1601b04!8m2!3d26.3078368!4d73.0617906!16s%2Fg%2F11xcf4nrrc?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D"
+                          className="text-brand-gold hover:text-brand-dark-green transition-colors duration-150"
+                        >
+                          Vidhya Nagar, Jodhpur, Rajasthan
+                        </a>
                       </div>
                     </div>
                     <div className="flex items-start space-x-3">
@@ -204,6 +207,13 @@ const ContactUs: React.FC = () => {
                       />
                       <div>
                         <h3 className="font-semibold">Call Us</h3>
+                        <a
+                          href="tel:+917878854056"
+                          className="text-brand-gold hover:text-brand-dark-green transition-colors duration-150"
+                        >
+                          +91 7878854056
+                        </a>
+                        ,{" "}
                         <a
                           href="tel:+919461665680"
                           className="text-brand-gold hover:text-brand-dark-green transition-colors duration-150"

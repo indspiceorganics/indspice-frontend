@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
               >
                 +91 9461665680
               </a>
-              ,
+              ,{" "}
               <a
                 href="tel:+917878854056"
                 className="hover:text-brand-gold transition duration-150"
