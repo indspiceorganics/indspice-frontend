@@ -15,13 +15,20 @@ const Home: React.FC = () => {
   return (
     <div className="bg-stone-50 text-stone-800 font-sans antialiased">
       {/* SEO optimization using Helmet */}
+      {/* SEO optimization using Helmet */}
       <Helmet>
         <title>
           IndSpice Organics | Organic Indian Spices – Pure, Certified &
           Chemical-Free
         </title>
+        {/* --- ADD THIS LINE --- */}
         <meta
-          name="og:keywords"
+          name="description"
+          content="Explore IndSpice Organics for premium certified organic spices. Sustainably grown, 100% natural, pesticide-free, and full of authentic Indian flavor."
+        />
+        {/* --- CORRECT THIS LINE (optional but recommended) --- */}
+        <meta
+          name="keywords" // Changed from "og:keywords"
           content="organic spices, Indian spices, cumin, turmeric, coriander, pesticide-free, sustainable farming, IndSpice Organics"
         />
         <meta name="author" content="IndSpice Organics" />
