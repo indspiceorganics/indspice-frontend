@@ -21,11 +21,7 @@ const Home: React.FC = () => {
           Chemical-Free
         </title>
         <meta
-          name="description"
-          content="Explore IndSpice Organics for premium certified organic spices. Sustainably grown, 100% natural, pesticide-free, and full of authentic Indian flavor."
-        />
-        <meta
-          name="keywords"
+          name="og:keywords"
           content="organic spices, Indian spices, cumin, turmeric, coriander, pesticide-free, sustainable farming, IndSpice Organics"
         />
         <meta name="author" content="IndSpice Organics" />
