@@ -71,7 +71,7 @@ const SpiceDetailPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
             {/* Column 1: Spice Image */}
-            <div className="sticky top-28 md:top-32 self-start">
+            <div className="md:sticky top-28 md:top-32 self-start">
               {" "}
               {/* Added self-start */}
               <img
