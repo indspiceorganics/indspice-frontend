@@ -1,10 +1,11 @@
 // src/pages/ContactUs.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 // Layout Components
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import Skeleton from "../components/common/Skeleton";
 
 // --- Ensure this import points to your actual contact page image ---
 import contactImage from "../assets/contact-image.png"; // Using .jpg based on earlier prompt
@@ -23,6 +24,8 @@ interface FormData {
 type SubmissionStatus = "idle" | "sending" | "success" | "error";
 
 const ContactUs: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   // State for form inputs
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -138,6 +141,139 @@ const ContactUs: React.FC = () => {
       setStatusMessage("");
     }, 6000); // Reset after 6 seconds
   };
+
+  // Simulate loading state
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800); // Show skeleton for 800ms
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="bg-stone-50">
+        <Navbar />
+
+        {/* Page Header Skeleton */}
+        <header className="bg-stone-100 py-16 md:py-24">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <Skeleton
+              variant="text"
+              height={48}
+              width="50%"
+              className="mx-auto mb-4"
+            />
+            <Skeleton
+              variant="text"
+              lines={2}
+              width="70%"
+              className="mx-auto max-w-3xl"
+            />
+          </div>
+        </header>
+
+        {/* Main Section Skeleton */}
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+              {/* Column 1: Contact Info & Image */}
+              <div className="space-y-8">
+                <div>
+                  <Skeleton
+                    variant="text"
+                    height={36}
+                    width="70%"
+                    className="mb-6"
+                  />
+                  {/* Contact details */}
+                  <div className="space-y-4">
+                    {Array.from({ length: 3 }).map((_, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <Skeleton
+                          variant="circular"
+                          width={24}
+                          height={24}
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <Skeleton
+                            variant="text"
+                            height={20}
+                            width="30%"
+                            className="mb-1"
+                          />
+                          <Skeleton variant="text" height={16} width="80%" />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* Image Skeleton */}
+                <Skeleton
+                  variant="rectangular"
+                  height={300}
+                  className="rounded-lg"
+                />
+              </div>
+
+              {/* Column 2: Form Skeleton */}
+              <div>
+                <Skeleton
+                  variant="text"
+                  height={36}
+                  width="60%"
+                  className="mb-6"
+                />
+                <div className="space-y-6">
+                  {/* Form fields */}
+                  {Array.from({ length: 3 }).map((_, index) => (
+                    <div key={index}>
+                      <Skeleton
+                        variant="text"
+                        height={16}
+                        width="30%"
+                        className="mb-1"
+                      />
+                      <Skeleton
+                        variant="rectangular"
+                        height={42}
+                        className="rounded-md"
+                      />
+                    </div>
+                  ))}
+                  {/* Message field (taller) */}
+                  <div>
+                    <Skeleton
+                      variant="text"
+                      height={16}
+                      width="30%"
+                      className="mb-1"
+                    />
+                    <Skeleton
+                      variant="rectangular"
+                      height={120}
+                      className="rounded-md"
+                    />
+                  </div>
+                  {/* Submit button */}
+                  <Skeleton
+                    variant="rectangular"
+                    width={140}
+                    height={40}
+                    className="rounded-md"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="bg-stone-50 text-stone-800 font-sans antialiased">

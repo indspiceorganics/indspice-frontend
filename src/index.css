@@ -82,6 +82,48 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+  
+  /* Enhanced skeleton animations with more aesthetic shimmer */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      #f3f4f6 0%,
+      #e5e7eb 20%,
+      #d1d5db 40%,
+      #e5e7eb 60%,
+      #f3f4f6 80%,
+      #f3f4f6 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 2s ease-in-out infinite;
+  }
+  
+  .skeleton-fast {
+    background: linear-gradient(
+      90deg,
+      #f3f4f6 0%,
+      #e5e7eb 20%,
+      #d1d5db 40%,
+      #e5e7eb 60%,
+      #f3f4f6 80%,
+      #f3f4f6 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.2s ease-in-out infinite;
+  }
+  
+  /* Pulse effect for skeleton elements */
+  .skeleton-pulse {
+    animation: skeleton-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Staggered skeleton animation for grid items */
+  .skeleton-stagger-1 { animation-delay: 0.05s; }
+  .skeleton-stagger-2 { animation-delay: 0.1s; }
+  .skeleton-stagger-3 { animation-delay: 0.15s; }
+  .skeleton-stagger-4 { animation-delay: 0.2s; }
+  .skeleton-stagger-5 { animation-delay: 0.25s; }
+  .skeleton-stagger-6 { animation-delay: 0.3s; }
 }
 
 /* Add custom class for footer background */
@@ -137,6 +179,24 @@
   }
   100% {
     transform: translateX(100%);
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
   }
 }
 

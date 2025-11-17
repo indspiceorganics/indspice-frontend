@@ -1,10 +1,11 @@
 // src/pages/OurSpices.tsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 
 // Layout Components
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import Skeleton from "../components/common/Skeleton";
 
 // Spice Card Component
 import SpiceCard from "../components/spices/SpiceCard"; // Adjust path if needed
@@ -104,6 +105,17 @@ const spicesList: SpiceInfo[] = [
 ];
 
 const OurSpices: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate loading state for hero text
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300); // Show skeleton for 300ms
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="bg-stone-50 text-stone-800 font-sans antialiased">
       {/* SEO optimization using Helmet */}
@@ -147,13 +159,32 @@ const OurSpices: React.FC = () => {
         {/* Page Header */}
         <header className="bg-stone-100 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold font-serif text-brand-dark-green mb-4">
-              Explore Our Organic Spices
-            </h1>
-            <p className="text-lg text-stone-600 max-w-3xl mx-auto">
-              From the essential to the exotic, discover the purity and potency
-              of IndSpice Organics.
-            </p>
+            {isLoading ? (
+              <>
+                <Skeleton
+                  variant="text"
+                  height={48}
+                  width="60%"
+                  className="mx-auto mb-4"
+                />
+                <Skeleton
+                  variant="text"
+                  lines={2}
+                  width="70%"
+                  className="mx-auto max-w-3xl"
+                />
+              </>
+            ) : (
+              <>
+                <h1 className="text-4xl md:text-5xl font-bold font-serif text-brand-dark-green mb-4">
+                  Explore Our Organic Spices
+                </h1>
+                <p className="text-lg text-stone-600 max-w-3xl mx-auto">
+                  From the essential to the exotic, discover the purity and
+                  potency of IndSpice Organics.
+                </p>
+              </>
+            )}
           </div>
         </header>
 
@@ -162,13 +193,14 @@ const OurSpices: React.FC = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Responsive Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {spicesList.map((spice) => (
+              {spicesList.map((spice, index) => (
                 <SpiceCard
                   key={spice.id}
                   name={spice.name}
                   imageUrl={spice.imageUrl}
                   description={spice.description}
                   link={spice.link}
+                  delay={index * 50} // Staggered loading delay (50ms intervals)
                 />
               ))}
             </div>

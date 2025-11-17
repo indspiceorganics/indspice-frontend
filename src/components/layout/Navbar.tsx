@@ -1,10 +1,12 @@
 // src/components/layout/Navbar.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import logoImage from "../../assets/logo.webp"; // Use WebP version
+import NavbarSkeleton from "../common/NavbarSkeleton";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -16,6 +18,19 @@ const Navbar: React.FC = () => {
     { name: "Our Spices", href: "/spices" },
     { name: "Contact Us", href: "/contact" },
   ];
+
+  // Simulate loading state
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 300); // Show skeleton for 300ms
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <NavbarSkeleton />;
+  }
 
   return (
     // Using default styles

@@ -1,10 +1,13 @@
 // src/components/home/WhyChooseUsSection.tsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import FeatureCard from "../layout/FeatureCard";
+import Skeleton from "../common/Skeleton";
 import { BsPatchCheckFill } from "react-icons/bs";
 import { FaTractor, FaHandsHelping } from "react-icons/fa";
 
 const WhyChooseUsSection: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const features = [
     {
       id: 1,
@@ -31,6 +34,56 @@ const WhyChooseUsSection: React.FC = () => {
         "Committed to fair trade practices, ensuring sustainable livelihoods for our farming communities in India.",
     },
   ];
+
+  // Simulate loading state
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 700); // Show skeleton for 700ms
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section className="py-16 sm:py-24 bg-stone-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <Skeleton
+              variant="text"
+              height={40}
+              width={350}
+              className="mx-auto"
+            />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl shadow-sm p-8 text-center transform transition-all duration-300"
+              >
+                {/* Icon placeholder with colored background */}
+                <div className="mb-6 flex justify-center">
+                  <div className="w-16 h-16 rounded-full bg-stone-200 skeleton flex items-center justify-center">
+                    <Skeleton variant="circular" width={32} height={32} />
+                  </div>
+                </div>
+                {/* Title */}
+                <Skeleton
+                  variant="text"
+                  height={28}
+                  width="70%"
+                  className="mx-auto mb-4"
+                />
+                {/* Description - 3 lines to match actual content */}
+                <Skeleton variant="text" lines={3} className="mx-auto" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 sm:py-24 bg-stone-100">

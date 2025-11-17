@@ -1,12 +1,14 @@
 // src/components/spices/SpiceCard.tsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LazyImage from "../common/LazyImage";
+import CardSkeleton from "../common/CardSkeleton";
 
 interface SpiceCardProps {
   name: string;
   imageUrl: string; // Use string for imported image variable
   description: string;
   link: string;
+  delay?: number; // For staggered loading
 }
 
 const SpiceCard: React.FC<SpiceCardProps> = ({
@@ -14,7 +16,22 @@ const SpiceCard: React.FC<SpiceCardProps> = ({
   imageUrl,
   description,
   link,
+  delay = 0,
 }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate loading state with optional delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 400 + delay); // Base 400ms + delay for staggered effect
+
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  if (isLoading) {
+    return <CardSkeleton />;
+  }
   return (
     <a
       href={link}

@@ -1,8 +1,56 @@
 // src/components/home/HeroSection.tsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import heroBgImage from "../../assets/hero-background.webp"; // Use WebP version
+import Skeleton from "../common/Skeleton";
 
 const HeroSection: React.FC = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate loading state
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 500); // Show skeleton for 500ms
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-stone-900 to-stone-800">
+        <div className="absolute inset-0 skeleton opacity-20"></div>
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          {/* Mimic the actual hero text structure */}
+          <div className="mb-4">
+            <Skeleton
+              variant="text"
+              height={56}
+              className="mb-2 mx-auto"
+              width="85%"
+            />
+            <Skeleton
+              variant="text"
+              height={56}
+              className="mb-4 mx-auto"
+              width="75%"
+            />
+          </div>
+          <Skeleton
+            variant="text"
+            height={24}
+            className="mb-8 mx-auto"
+            width="55%"
+          />
+          <Skeleton
+            variant="rectangular"
+            width={180}
+            height={48}
+            className="mx-auto rounded-lg"
+          />
+        </div>
+      </section>
+    );
+  }
   return (
     <section
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
