@@ -10,16 +10,16 @@ import Footer from "../components/layout/Footer";
 import SpiceCard from "../components/spices/SpiceCard"; // Adjust path if needed
 
 // --- Spice Images (Update filenames/paths to match your assets) ---
-import spiceCuminImage from "../assets/spiceCard-cumin.png";
-import corianderImage from "../assets/spiceCard-coriander.png";
-import redChillyImage from "../assets/spiceCard-chilly.png";
-import fennelImage from "../assets/spiceCard-fennel.png";
-import fenugreekImage from "../assets/spiceCard-fenugreek.png";
-import turmericImage from "../assets/spiceCard-turmeric.png";
-import cardamomImage from "../assets/spiceCard-cardamom.png";
-import clovesImage from "../assets/spiceCard-clove.png";
+import spiceCuminImage from "../assets/spiceCard-cumin.webp";
+import corianderImage from "../assets/spiceCard-coriander.webp";
+import redChillyImage from "../assets/spiceCard-chilly.webp";
+import fennelImage from "../assets/spiceCard-fennel.webp";
+import fenugreekImage from "../assets/spiceCard-fenugreek.webp";
+import turmericImage from "../assets/spiceCard-turmeric.webp";
+import cardamomImage from "../assets/spiceCard-cardamom.webp";
+import clovesImage from "../assets/spiceCard-clove.webp";
 // === ADDED Import for Black Pepper ===
-import blackPepperImage from "../assets/spiceCard-black-pepper.png"; // Add this line - ensure filename matches
+import blackPepperImage from "../assets/spiceCard-black-pepper.webp"; // WebP version
 
 // --- Define Spice Data ---
 interface SpiceInfo {

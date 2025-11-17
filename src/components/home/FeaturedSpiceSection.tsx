@@ -1,13 +1,14 @@
 // src/components/home/FeaturedSpiceSection.tsx
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight, FaPlay, FaPause } from "react-icons/fa";
+import LazyImage from "../common/LazyImage";
 
-// --- Spice Images (Ensure these imports match your filenames) ---
-import spiceCuminImage from "../../assets/spice-cumin.png";
-import corianderImage from "../../assets/spice-coriander.png";
-import redChillyImage from "../../assets/spice-red-chilly.png";
-import fennelImage from "../../assets/spice-fennel.png";
-import fenugreekImage from "../../assets/spice-fenugreek.png";
+// --- Spice Images (WebP versions for better performance) ---
+import spiceCuminImage from "../../assets/spice-cumin.webp";
+import corianderImage from "../../assets/spice-coriander.webp";
+import redChillyImage from "../../assets/spice-red-chilly.webp";
+import fennelImage from "../../assets/spice-fennel.webp";
+import fenugreekImage from "../../assets/spice-fenugreek.webp";
 
 // --- Data Structure ---
 interface Spice {
@@ -166,13 +167,18 @@ const FeaturedSpiceSection: React.FC = () => {
         >
           {/* Grid Layout */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Image */}
-            <div className="flex justify-center md:justify-end">
-              <img
-                src={activeSpice.image}
-                alt={activeSpice.name}
-                className="rounded-lg shadow-lg w-full max-w-md object-cover"
-              />
+            {/* Enhanced image section */}
+            <div className="flex justify-center lg:justify-end order-2 lg:order-1">
+              <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-400/20 to-orange-400/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                <LazyImage
+                  src={activeSpice.image}
+                  alt={activeSpice.name}
+                  className="relative rounded-2xl shadow-large w-full max-w-md object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  priority={activeIndex === 0} // Priority for first image
+                  placeholder="blur"
+                />
+              </div>
             </div>
 
             {/* Text Content */}

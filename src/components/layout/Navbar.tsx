@@ -1,7 +1,7 @@
 // src/components/layout/Navbar.tsx
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import logoImage from "../../assets/logo.png"; // Adjust path/filename if needed
+import logoImage from "../../assets/logo.webp"; // Use WebP version
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

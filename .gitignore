@@ -238,3 +238,18 @@ package-lock.json  # <<< IGNORE npm's lock file
 .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/node,react,vite,windows,macos,linux,visualstudiocode,dotenv,yarn
+
+# Custom additions for IndSpice Organics
+# Performance monitoring and documentation files
+IMAGE-OPTIMIZATION-SUMMARY.md
+performance-monitor.js
+*.ps1
+
+# Keep WebP images but ignore backup originals if created
+*.backup.png
+*.backup.jpg
+
+# Build and cache directories
+.vite/
+dist/
+.cache/

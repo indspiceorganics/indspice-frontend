@@ -1,5 +1,6 @@
 // src/components/spices/SpiceCard.tsx
 import React from "react";
+import LazyImage from "../common/LazyImage";
 
 interface SpiceCardProps {
   name: string;
@@ -19,14 +20,13 @@ const SpiceCard: React.FC<SpiceCardProps> = ({
       href={link}
       className="group block bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 ease-in-out hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-brand-gold focus:ring-opacity-50"
     >
-      {/* Image */}
+      {/* Image with lazy loading */}
       <div className="aspect-square overflow-hidden">
-        {" "}
-        {/* Ensures square aspect ratio */}
-        <img
+        <LazyImage
           src={imageUrl}
           alt={name}
-          className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105" // Subtle zoom on hover
+          className="w-full h-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
+          placeholder="blur"
         />
       </div>
       {/* Content */}

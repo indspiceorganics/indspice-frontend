@@ -1,6 +1,6 @@
 // src/components/home/HeroSection.tsx
 import React from "react";
-import heroBgImage from "../../assets/hero-background.png"; // Ensure path is correct
+import heroBgImage from "../../assets/hero-background.webp"; // Use WebP version
 
 const HeroSection: React.FC = () => {
   return (
